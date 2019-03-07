@@ -1,6 +1,4 @@
 class RepositoriesController < ApplicationController
-  before_action :set_access_hash
-
   def index
     access_hash = { 'access_token' => session[:token] }
     github = GithubService.new(access_hash)
@@ -9,13 +7,8 @@ class RepositoriesController < ApplicationController
 
   def create
     github = GithubService.new(access_hash)
-    response = Faraday.post "https://api.github.com/user/repos", {name: params[:name]}.to_json, {'Authorization' => "token #{session[:token]}", 'Accept' => 'application/json'}
+    name = params[:name].to_json
+    github.create_repo(name)
     redirect_to '/'
-  end
-
-  private
-
-  def set_access_hash
-
   end
 end
