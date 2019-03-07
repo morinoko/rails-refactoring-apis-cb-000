@@ -9,7 +9,7 @@ class RepositoriesController < ApplicationController
     access_hash = { 'access_token' => session[:token] }
     github = GithubService.new(access_hash)
 
-    response = github.create_repo(params[:name].to_json)
+    response = github.create_repo(params[:name])
 
     redirect_to '/'
   end
