@@ -9,6 +9,7 @@ class RepositoriesController < ApplicationController
     github = GithubService.new(access_hash)
     name = params[:name].to_json
     github.create_repo(name)
+    
     redirect_to '/'
   end
 end
