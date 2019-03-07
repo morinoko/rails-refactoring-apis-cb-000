@@ -12,6 +12,8 @@ class RepositoriesController < ApplicationController
     redirect_to '/'
   end
 
+  private
+
   def set_access_hash
     access_hash = { 'access_token' => session[:token] }
   end
